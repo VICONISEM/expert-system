@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:untitled/HomeScreen.dart';
+import 'HomeScreen.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -23,10 +23,11 @@ class _LoginPageState extends State<LoginPage> {
         password: _passwordController.text.trim(),
       );
 
-      // Check if login is successful
       if (userCredential.user != null) {
+        // Clear text fields after successful login
+        _emailController.clear();
+        _passwordController.clear();
 
-        // Navigate to the next screen after successful login
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(
             builder: (context) => HomeScreen(),
@@ -37,48 +38,14 @@ class _LoginPageState extends State<LoginPage> {
           _isLoading = false;
         });
         // Handle invalid username or password
-        showDialog(
-          context: context,
-          builder: (BuildContext context) {
-            return AlertDialog(
-              title: Text('Login Failed'),
-              content: Text('Invalid email or password. Please try again.'),
-              actions: <Widget>[
-                TextButton(
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                  child: Text('OK'),
-                ),
-              ],
-            );
-          },
-        );
+        // ...
       }
     } catch (e) {
       setState(() {
         _isLoading = false;
       });
-
-      // Handle login failure, such as displaying an error message
-      print('Login failed: $e');
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text('Login Failed'),
-            content: Text('Failed to sign in. Please try again later.'),
-            actions: <Widget>[
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: Text('OK'),
-              ),
-            ],
-          );
-        },
-      );
+      // Handle login failure
+      // ...
     }
   }
 
@@ -121,5 +88,3 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 }
-
-
