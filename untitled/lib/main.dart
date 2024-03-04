@@ -1,31 +1,19 @@
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'splash_page.dart';
-import 'login_page.dart';
-import 'HomeScreen.dart';
-import 'firebase_options.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'screens/login_page.dart'; // Adjust the path based on your project structure
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
-  runApp(MyApp());
-}
+void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: MyAppShell(),
+      debugShowCheckedModeBanner: false,
+      title: 'Flutter SQLite Auth Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+      ),
+      home: LoginPage(), // Set LoginPage as the initial screen
     );
-  }
-}
-
-class MyAppShell extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return SplashScreen(); // Always display the splash screen
   }
 }

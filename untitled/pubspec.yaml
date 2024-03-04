@@ -10,9 +10,12 @@ environment:
 dependencies:
   firebase_auth: ^4.17.6
   firebase_core: ^2.25.5
+  shared_preferences: ^2.0.0
+
   flutter:
     sdk: flutter
   sqflite: ^2.0.0
+  path_provider: ^2.0.2
   cloud_firestore: ^4.15.6
   # Add other dependencies here
 
